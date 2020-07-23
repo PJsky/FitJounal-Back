@@ -20,7 +20,9 @@ router.get('/', verify, async (req,res) => {
 });
 
 router.post('/', verify, async (req,res) => {
-    let timeToSave = moment(req.body.dayDate).subtract(2,"hours").format('YYYY-MM-DD'); 
+    let timeToSave = moment(req.body.dayDate)
+    // .subtract(2,"hours")
+    .format('YYYY-MM-DD'); 
     const userId = getUser(req.header('auth-token'));
     try{
         let day = await Day.findOne({date: timeToSave, userId:userId});
